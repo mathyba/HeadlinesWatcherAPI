@@ -47,3 +47,12 @@ pip install -r requirements.txt requirements-dev.txt
 # Or with a virtual env
 pipenv install
 ```
+
+You will also have access to pre-commit hooks:
+```
+# Run pre-commit checks without committing
+pre-commit run
+
+# Bypass pre-commit check
+git commit "foo" --no-verify
+```
