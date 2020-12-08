@@ -22,5 +22,28 @@ pipenv install
 pipenv shell
 ```
 
+#### Possible issues
+You may find that python is unable to import some packages installed.
+If so, provide pipenv with a PYTHONPATH:
+- find the location of the package:
+```
+# Inside the venv shell
+pip show <package-raising-the-error>
+```
+- define the PYTHONPATH in the .env:
+```
+echo "PYTHONPATH='path-to-the-package' >> .env
+```
+
 # TODO
 [] Dockerize development environment
+
+## For developers
+
+Install dev packages
+```
+pip install -r requirements.txt requirements-dev.txt
+
+# Or with a virtual env
+pipenv install
+```

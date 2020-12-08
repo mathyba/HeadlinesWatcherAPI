@@ -4,6 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
+black = "*"
+pre-commit = "*"
 
 [packages]
 appdirs = "==1.4.4"
@@ -28,3 +31,6 @@ flask = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
