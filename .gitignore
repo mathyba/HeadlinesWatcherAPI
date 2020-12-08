@@ -1,0 +1,5 @@
+# Keep my secrets private
+.env
+
+# Ignore vim tmp files
+*.sw*
