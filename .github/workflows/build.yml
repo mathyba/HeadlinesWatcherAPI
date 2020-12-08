@@ -1,0 +1,17 @@
+name: Build
+on: [push]
+jobs:
+  setup:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+  style:
+    needs: setup
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Black files
+        run: pip install black; python -m black . --check
