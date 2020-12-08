@@ -15,3 +15,6 @@ jobs:
     steps:
       - name: Black files
         run: pip install black; python -m black . --check
+
+      - name: Check style
+        run: pip install pylint; python -m pylint *.py
