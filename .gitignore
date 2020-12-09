@@ -3,3 +3,10 @@
 
 # Ignore vim tmp files
 *.sw*
+
+# Python files
+*.pyc
+__pycache__
+
+# Personal organization
+*safety.py
