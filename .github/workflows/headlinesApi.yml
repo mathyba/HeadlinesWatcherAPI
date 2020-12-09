@@ -1,0 +1,22 @@
+name: Build
+on: [push]
+jobs:
+  setup:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: export PATH=/home/runner/.local/bin:$PATH; pip install --user -r requirements.txt; pip install --user -r requirements-dev.txt
+
+  style:
+    needs: setup
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Black files
+        run: export PATH=/usr/bin/python:$PATH; pip show httpx; python -m black . --check
+
+      - name: Check style
+        run: python -m pylint *.py
