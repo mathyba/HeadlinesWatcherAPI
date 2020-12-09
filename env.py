@@ -15,3 +15,4 @@ LOG_LEVEL = log.DEBUG if os.getenv("DEBUG") else log.INFO
 REFRESH_RATE = int(os.getenv("REFRESH_RATE", "300"))
 EXP_TIME = int(os.getenv("EXP_TIME", "86400"))  # default 24h
 COUNTRY = os.getenv("COUNTRY", "CA")
+DB_PATH = "db.json"
