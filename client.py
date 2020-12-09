@@ -5,7 +5,6 @@ import time
 
 import httpx
 
-from db import db
 from env import SECRET_KEY, BASE_URL, LOG_LEVEL, REFRESH_RATE, COUNTRY
 from exceptions import DatasetBrowserException
 
@@ -13,18 +12,15 @@ from exceptions import DatasetBrowserException
 class _Client:
     """Client for requests to a target API"""
 
-    def __init__(
-        self, base_url, secret_key, country="FR", refresh=300, dbase=None
-    ):  # pylint: disable=too-many-arguments
+    def __init__(self, base_url, secret_key, country="FR", refresh=300):
         """Get ready to interact with the source API"""
 
         self._base_url = base_url
         self._secret_key = secret_key
-        self._headers = None
+        self._headers = {"x-api-key": self._secret_key}
         self._session = None
         self._refresh_rate = refresh
-        self._url = {"apiKey": self._secret_key, "country": (country).lower()}
-        self._db = dbase
+        self._url = {"country": (country).lower()}
 
     @property
     def session(self):
@@ -32,7 +28,7 @@ class _Client:
 
         if self._session is None:
             log.info("Instanciate an HTTP connection with the target API")
-            self._session = httpx.Client()
+            self._session = httpx.Client(headers=self._headers)
         return self._session
 
     @property
@@ -56,9 +52,12 @@ class _Client:
 
         try:
             log.debug("Making GET request to url %s", self.url)
-            r_get = self.session.get(self.url)
-            r_get.raise_for_status()
-            return r_get.json()
+            r_get = self.session.get(self.url).json()
+            log.info(r_get)
+            if r_get["status"] == "error":
+                log.error("There was a problem with a GET request: %s", r_get)
+                raise DatasetBrowserException from Exception
+            return r_get
         except httpx.RequestError as err:
             log.error("Unable to complete GET request")
             raise DatasetBrowserException from err
@@ -68,8 +67,8 @@ class _Client:
 
         while True:
             r_data = self._get()
-            self._db.update_dataset(r_data["articles"])
             log.info("Going asleep for %s seconds", self._refresh_rate)
+            log.debug(r_data)
             time.sleep(self._refresh_rate)
 
     def close(self):
@@ -82,7 +81,7 @@ class _Client:
 
 
 log.getLogger().setLevel(LOG_LEVEL)
-client = _Client(BASE_URL.rstrip(), SECRET_KEY, COUNTRY, REFRESH_RATE, db)
+client = _Client(BASE_URL.rstrip(), SECRET_KEY, COUNTRY, REFRESH_RATE)
 
 try:
     client.run()
