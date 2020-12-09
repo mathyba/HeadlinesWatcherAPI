@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+    api:
+      build:
+        context: .
+      image: dataset_browser_api
+      network_mode: "host"
+      volumes:
+          - $PWD:/src
+      entrypoint: "python api.py"
+    client:
+      build:
+        context: .
+      image: dataset_browser_api
+      volumes:
+          - $PWD:/src
+      entrypoint: "python client.py"
+      #      ports:
+      #    - "5000:5000"
