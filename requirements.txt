@@ -1,31 +1,41 @@
-################################################################################
-# This requirements file has been automatically generated from `Pipfile` with
-# `pipenv-to-requirements`
-#
-#
-# This has been done to maintain backward compatibility with tools and services
-# that do not support `Pipfile` yet.
-#
-# Do NOT edit it directly, use `pipenv install [-d]` to modify `Pipfile` and
-# `Pipfile.lock` and then regenerate `requirements*.txt`.
-################################################################################
-
+-i https://pypi.org/simple
 appdirs==1.4.4
+attrs==20.3.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+authlib==0.15.2
 certifi==2020.12.5
+cffi==1.14.4
 cfgv==3.2.0
+chardet==3.0.4
+click==7.1.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
+clickclick==20.10.2
+connexion[swagger-ui]==2.7.0
+cryptography==3.3; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'
 distlib==0.3.1
 filelock==3.0.12
-flask
+flask==1.1.2
 h11==0.11.0
 httpcore==0.12.2
 httpx==0.16.1
 identify==1.5.10
 idna==2.10
+inflection==0.5.1; python_version >= '3.5'
+itsdangerous==1.1.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+jinja2==2.11.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
+jsonschema==3.2.0
+markupsafe==1.1.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 nodeenv==1.5.0
+openapi-spec-validator==0.2.9
+pycparser==2.20; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+pyrsistent==0.17.3; python_version >= '3.5'
 python-dotenv==0.15.0
 pyyaml==5.3.1
+requests==2.25.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
 rfc3986[idna2008]==1.4.0
 six==1.15.0
 sniffio==1.2.0
+swagger-ui-bundle==0.0.8
+tinydb==4.3.0
 toml==0.10.2
+urllib3==1.26.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'
 virtualenv==20.2.2
+werkzeug==1.0.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'
