@@ -7,8 +7,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: pip install --user -r requirements.txt; pip show httpx; pip install --user -r requirements-dev.txt
+      - name: Install dependencies and build image
+        run: docker build . -t api
+#        run: pip install -r requi rements.txt; pip show httpx; pip install -r requirements-dev.txt
+#
+      - name: Run the container and check that the program launches successfully
+        run: timeout --preserve-status docker-compose up --exit-code-from api
 
   style:
     needs: setup
