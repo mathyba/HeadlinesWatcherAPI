@@ -83,10 +83,11 @@ class _Client:
 log.getLogger().setLevel(LOG_LEVEL)
 client = _Client(BASE_URL.rstrip(), SECRET_KEY, COUNTRY, REFRESH_RATE)
 
-try:
-    client.run()
-except Exception as err:
-    log.error("Terminating after fatal error: %s", err)
-    raise DatasetBrowserException from err
-finally:
-    client.session.close()
+if __name__ == "__main__":
+    try:
+        client.run()
+    except Exception as err:
+        log.error("Terminating after fatal error: %s", err)
+        raise DatasetBrowserException from err
+    finally:
+        client.session.close()
