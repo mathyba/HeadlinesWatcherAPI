@@ -1,0 +1,42 @@
+swagger: "2.0"
+info:
+  description: Swagger for News Watcher
+  version: "1.0.0"
+  title: Swagger for News Watcher
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/"
+
+paths:
+  /:
+    get:
+      operationId: "api.get_dataset"
+      summary: "Access actualized News headlines"
+      description: "Actualized news headlines"
+      parameters: []
+      responses:
+        "200":
+          description: "Successfully read all headlines"
+          schema:
+            type: "array"
+
+  /{id_headline}:
+    get:
+      operationId: "api.get_headline"
+      summary: "Get a headline by ID"
+      description: "Healine details"
+      parameters:
+        - name: id_headline
+          in: path
+          format: path
+          required: true
+          type: "string"
+          description: "Numeric ID of the headline to get"
+      responses:
+        "200":
+          description: "Ruccessfully read headline details"
+          schema:
+            type: "object"
