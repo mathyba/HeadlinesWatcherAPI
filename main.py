@@ -1,4 +1,4 @@
-"""French Governement Data Browser API"""
+"""Headlines Watcher API"""
 
 import logging as log
 import threading
